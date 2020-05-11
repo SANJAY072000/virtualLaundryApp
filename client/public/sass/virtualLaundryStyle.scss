@@ -1,0 +1,94 @@
+// importing the required mixins
+@import "mixins";
+
+
+// declaring the colors
+$rockingRed: (
+rr1:#E8290B,
+rr2:#E71C23,
+rr3:#AE1438
+);
+
+$beautifulBlue: (
+bb1:#3498DB,
+bb2:#0A79DF,
+bb3:#4834DF
+);
+
+$golfGreen: (
+gg1:#45CE30,
+gg2:#019031,
+gg3:#218F76
+);
+
+$freshYellow: (
+fy1:#EEC213,
+fy2:#F3B431,
+fy3:#FFF222
+);
+
+$others: (
+oth1:#E74292,
+oth2:#BB2CD9,
+oth3:#EA7773
+);
+
+
+// get the colors
+@function rr($a){
+  @return map-get($rockingRed, $a);
+}
+
+@function bb($a){
+  @return map-get($beautifulBlue, $a);
+}
+
+@function gg($a){
+  @return map-get($golfGreen, $a);
+}
+
+@function fy($a){
+  @return map-get($freshYellow, $a);
+}
+
+@function oth($a){
+  @return map-get($others, $a);
+}
+
+
+// for xs screen size
+body{
+
+}
+
+
+// for sm screen size
+@media (min-width: 576px){
+  body{
+
+  }
+}
+
+
+// for md screen size
+@media (min-width: 768px){
+  body{
+
+  }
+}
+
+
+// for lg screen size
+@media (min-width: 992px){
+  body{
+
+  }
+}
+
+
+// for xl screen size
+@media (min-width: 1200px){
+  body{
+
+  }
+}
