@@ -20,7 +20,7 @@ const dbstr=require('./setup/config').mongoUrl;
 
 
 // importing the routes
-
+const auth=require('./routes/api/auth');
 
 
 // configuring body-parser middleware
@@ -37,7 +37,7 @@ app.use(cors());
 
 
 // configuring the passport strategy
-
+require('./strategies/jsonwtStrategy')(passport);
 
 
 // connecting the mongodb
@@ -47,7 +47,7 @@ mongoose.connect(dbstr,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
 // configuring the routes
-
+app.use('/api/auth',auth);
 
 
 // configuring the build dynamically
