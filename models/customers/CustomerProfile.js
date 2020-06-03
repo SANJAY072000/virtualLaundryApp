@@ -13,10 +13,6 @@ const customerProfileSchema=new Schema({
         type:String,
         required:true
     },
-    customerPlan:{
-        type:String,
-        default:'None'
-    },
     date:{
         type:Date,
         default:Date.now
