@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import HomeScreen from './screens/home/HomeScreen';
 import AccountScreen from './screens/auth/AccountScreen';
 import CreateAccountScreen from './screens/auth/CreateAccountScreen';
+import LoginAccountScreen from './screens/auth/LoginAccountScreen';
 
 
 // importing the store
@@ -44,6 +45,10 @@ export default class App extends Component {
       <Stack.Screen name='CreateAccountScreen' component={CreateAccountScreen}
         options={{
           title:'Create Account'
+        }}/>
+      <Stack.Screen name='LoginAccountScreen' component={LoginAccountScreen}
+        options={{
+          title:'Login'
         }}/>
 
 

@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 
 
 // importing the reducers
-import PlayAudioReducer from './PlayAudioReducer';
+import PlayAudioReducer from './playaudio/PlayAudioReducer';
 
 
 // exporting the combined reducer

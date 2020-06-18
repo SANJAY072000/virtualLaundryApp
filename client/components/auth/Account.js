@@ -24,7 +24,7 @@ export default class Account extends Component {
       <Text style={{fontWeight:'bold'}}>Or</Text>
       </View>
       <Button rounded bordered style={[styles.button2,styles.alignh]}
-      onPress={()=>this.props.navigation.navigate('HomeScreen')}>
+      onPress={()=>this.props.navigation.navigate('LoginAccountScreen')}>
       <Text style={styles.title2}>Login</Text>
       </Button>
       </View>

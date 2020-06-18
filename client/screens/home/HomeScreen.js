@@ -11,7 +11,7 @@ import Home from '../../components/home/Home';
 
 
 // importing the actions
-import PlayAudioAction from '../../redux/actions/PlayAudioAction';
+import PlayAudioAction from '../../redux/actions/playaudio/PlayAudioAction';
 
 
 class HomeScreen extends Component {
