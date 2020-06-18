@@ -20,17 +20,17 @@ this.state = {
 }
 
 
-async componentDidMount(){
-const obj=new Audio.Sound();
-await obj.loadAsync(this.state.url);
-await obj.playAsync()
-.then(res=>{
-  setInterval(()=>{
-    obj.unloadAsync();
-  },res.playableDurationMillis);
-})
-.catch(err=>console.log(err));
-}
+// async componentDidMount(){
+// const obj=new Audio.Sound();
+// await obj.loadAsync(this.state.url);
+// await obj.playAsync()
+// .then(res=>{
+//   setInterval(()=>{
+//     obj.unloadAsync();
+//   },res.playableDurationMillis);
+// })
+// .catch(err=>console.log(err));
+// }
 
 
   render(){

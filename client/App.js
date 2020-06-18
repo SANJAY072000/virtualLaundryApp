@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 // importing the screens
 import HomeScreen from './screens/home/HomeScreen';
 import AccountScreen from './screens/auth/AccountScreen';
+import CreateAccountScreen from './screens/auth/CreateAccountScreen';
 
 
 // creating the navigation stack
@@ -25,13 +26,17 @@ export default class App extends Component {
               backgroundColor:'#7612cc',
             }
           }}>
-          <Stack.Screen name='HomeScreen' component={HomeScreen} options={{
-              title:'Cleanly'
-            }}/>
-          <Stack.Screen name='AccountScreen' component={AccountScreen}
-            options={{
-              title:'Cleanly'
-            }}/>
+      <Stack.Screen name='HomeScreen' component={HomeScreen} options={{
+          title:'Cleanly'
+        }}/>
+      <Stack.Screen name='AccountScreen' component={AccountScreen}
+        options={{
+          title:'Cleanly'
+        }}/>
+      <Stack.Screen name='CreateAccountScreen' component={CreateAccountScreen}
+        options={{
+          title:'Create Account'
+        }}/>
 
         </Stack.Navigator>
 

@@ -17,7 +17,7 @@ export default class Account extends Component {
       <Image source={require('../../assets/images/auth/authb.png')}
       style={styles.authb}/>
       <Button rounded bordered style={[styles.button1,styles.alignh]}
-      onPress={()=>this.props.navigation.navigate('HomeScreen')}>
+      onPress={()=>this.props.navigation.navigate('CreateAccountScreen')}>
       <Text style={styles.title1}>Create Account</Text>
       </Button>
       <View style={styles.alignh}>
