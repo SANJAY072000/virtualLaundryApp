@@ -2,12 +2,17 @@
 import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {Provider} from 'react-redux';
 
 
 // importing the screens
 import HomeScreen from './screens/home/HomeScreen';
 import AccountScreen from './screens/auth/AccountScreen';
 import CreateAccountScreen from './screens/auth/CreateAccountScreen';
+
+
+// importing the store
+import Store from './redux/store/Store';
 
 
 // creating the navigation stack
@@ -19,6 +24,7 @@ export default class App extends Component {
 
   render(){
     return(
+      <Provider store={Store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
             headerTintColor:'#fff',
@@ -26,6 +32,8 @@ export default class App extends Component {
               backgroundColor:'#7612cc',
             }
           }}>
+
+
       <Stack.Screen name='HomeScreen' component={HomeScreen} options={{
           title:'Cleanly'
         }}/>
@@ -38,10 +46,10 @@ export default class App extends Component {
           title:'Create Account'
         }}/>
 
+
         </Stack.Navigator>
-
-
       </NavigationContainer>
+      </Provider>
     );
   }
 }
