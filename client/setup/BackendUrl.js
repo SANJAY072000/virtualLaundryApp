@@ -1,6 +1,6 @@
 // creating the backendUrl configuration
 const backendUrlConfig = {
-    url:'http://42.108.168.207:3000/',
+    url:'http://192.168.43.133:3000',
     secret:'I love PT'
   };
 

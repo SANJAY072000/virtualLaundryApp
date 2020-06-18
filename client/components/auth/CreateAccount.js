@@ -48,7 +48,7 @@ class CreateAccount extends Component {
             text:'Login',
             onPress:()=>this.props.navigation.navigate('LoginAccountScreen')
           }]);
-          else this.props.navigation.navigate('HomeScreen');
+          else this.props.navigation.navigate('LoginAccountScreen');
         })
         .catch(err=>console.log(err));
       // }

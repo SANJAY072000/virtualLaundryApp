@@ -3,6 +3,7 @@ const express=require('express'),
 router=express.Router(),
 passport=require('passport'),
 mongoose=require('mongoose'),
+nodemailer=require('nodemailer'),
 bcrypt=require('bcryptjs'),
 jsonwt=require('jsonwebtoken');
 
@@ -35,8 +36,30 @@ bcrypt.hash(newCustomer.customerPassword,salt,(err,hash)=>{
 if(err)throw err;
 newCustomer.customerPassword=hash;
 newCustomer.save()
-.then(customer=>res.status(200).json(customer))
-.catch(err=>console.log(err)); 
+.then(customer=>{
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'sanjaysinghbisht751@gmail.com',
+            pass: 'Sak07sham@'
+        }
+        });
+        var mailOptions = {};
+        mailOptions.from='sanjaysinghbisht751@gmail.com';
+        mailOptions.to=customer.customerEmail;
+        mailOptions.subject='Thanks for registering to Cleanly';
+        mailOptions.text=`Welcome to Cleanly ! Your credentials are : email - ${customer.customerEmail}
+        and password - ${req.body.customerPassword}`;
+        transporter.sendMail(mailOptions, (error, info)=>{
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+        });
+    res.status(200).json(customer);
+})
+.catch(err=>console.log(err));
 });
 });
 })
@@ -101,4 +124,3 @@ Customer.findOne({_id:req.user._id})
 
 // exporting the routes
 module.exports=router;
-
