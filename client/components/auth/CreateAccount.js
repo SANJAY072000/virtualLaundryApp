@@ -31,12 +31,12 @@ class CreateAccount extends Component {
       onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
     }]);
     else{
-      // if(customerPassword.length<8)
-      // Alert.alert('Password must be atleast 8 characters long','',[{
-      //   text:'Cancel',
-      //   onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
-      // }]);
-      // else{
+      if(customerPassword.length<8)
+      Alert.alert('Password must be atleast 8 characters long','',[{
+        text:'Cancel',
+        onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
+      }]);
+      else{
         axios({
           url:`${url}/api/auth/customer/register`,
           method:'POST',
@@ -51,7 +51,7 @@ class CreateAccount extends Component {
           else this.props.navigation.navigate('LoginAccountScreen');
         })
         .catch(err=>console.log(err));
-      // }
+      }
     }
 
 
