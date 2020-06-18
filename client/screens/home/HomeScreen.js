@@ -17,18 +17,18 @@ import PlayAudioAction from '../../redux/actions/playaudio/PlayAudioAction';
 class HomeScreen extends Component {
 
 
-async componentDidMount(){
-await this.props.playaudio(require('../../assets/audio/speech.mp3'));
-const obj=new Audio.Sound();
-await obj.loadAsync(this.props.url);
-await obj.playAsync()
-.then(res=>{
-  setInterval(()=>{
-    obj.unloadAsync();
-  },res.playableDurationMillis);
-})
-.catch(err=>console.log(err));
-}
+// async componentDidMount(){
+// await this.props.playaudio(require('../../assets/audio/speech.mp3'));
+// const obj=new Audio.Sound();
+// await obj.loadAsync(this.props.url);
+// await obj.playAsync()
+// .then(res=>{
+//   setInterval(()=>{
+//     obj.unloadAsync();
+//   },res.playableDurationMillis);
+// })
+// .catch(err=>console.log(err));
+// }
 
 
   render(){
@@ -54,19 +54,11 @@ await obj.playAsync()
 
 
 // configuring state to props method
-function mapStateToProps(state){
-  return {
-    url:state.PlayAudioReducer.url
-  };
-}
+mapStateToProps=state=>({url:state.PlayAudioReducer.url});
 
 
 // configuring dispatch to props method
-function mapDispatchToProps(dispatch){
-  return {
-    playaudio:url=>dispatch(PlayAudioAction(url))
-  };
-}
+mapDispatchToProps=dispatch=>({playaudio:url=>dispatch(PlayAudioAction(url))});
 
 
 // exporting the component
