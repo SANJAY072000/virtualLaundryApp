@@ -1,9 +1,13 @@
 // importing the required modules
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, Alert} from 'react-native';
+import {View, Text, StyleSheet,
+  Image, Alert, ActivityIndicator} from 'react-native';
 import {Content, Form, Item, Input, Label, Button} from 'native-base';
 import {connect} from 'react-redux';
 import axios from 'axios';
+
+
+let loader=false;
 
 
 // importing the backend configuring
@@ -20,6 +24,14 @@ import AccountFormAction from '../../redux/actions/auth/AccountFormAction';
 class CreateAccount extends Component {
 
 
+  componentDidMount(){
+    this.props.navigation.addListener('focus',()=>{
+      loader=false;
+      this.forceUpdate();
+    });
+  }
+
+
   saveData=(inputName,text)=>this.props.setAccountData(inputName,text)
 
 
@@ -34,9 +46,15 @@ class CreateAccount extends Component {
       if(customerPassword.length<8)
       Alert.alert('Password must be atleast 8 characters long','',[{
         text:'Cancel',
-        onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
+        onPress:()=>{
+        loader=false;
+        this.forceUpdate();
+        this.props.navigation.navigate('CreateAccountScreen');
+      }
       }]);
       else{
+        loader=true;
+        this.forceUpdate();
         axios({
           url:`${url}/api/auth/customer/register`,
           method:'POST',
@@ -48,15 +66,24 @@ class CreateAccount extends Component {
             text:'Login',
             onPress:()=>{
             this.props.setAccountData('RESET','');
+            loader=false;
+            this.forceUpdate();
             this.props.navigation.replace('LoginAccountScreen');
           }
           },
           {
             text:'Cancel',
-            onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
+            onPress:()=>{
+            this.props.setAccountData('RESET','');
+            loader=false;
+            this.forceUpdate();
+            this.props.navigation.navigate('CreateAccountScreen');
+          }
           }]);
           else{
           this.props.setAccountData('RESET','');
+          loader=false;
+          this.forceUpdate();
           this.props.navigation.replace('LoginAccountScreen');
         }
         })
@@ -70,6 +97,12 @@ class CreateAccount extends Component {
 
 
   render(){
+    if(loader)
+    return(
+      <View style={styles.container}>
+      <ActivityIndicator size='large' color='#7612cc'/>
+      </View>
+  );
     return(
       <Content>
       <View style={styles.logo}>
@@ -116,6 +149,11 @@ export default connect(mapStateToProps,mapDispatchToProps)(CreateAccount);
 
 // creating the stylings
 const styles=StyleSheet.create({
+container:{
+  flex:1,
+  justifyContent:'center',
+  alignItems:'center'
+},
 logo:{
   flexDirection:'row',
   justifyContent:'center',

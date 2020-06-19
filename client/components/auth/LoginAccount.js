@@ -1,9 +1,13 @@
 // importing the required modules
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, AsyncStorage, Alert} from 'react-native';
+import {View, Text, StyleSheet,
+  Image, AsyncStorage, Alert, ActivityIndicator} from 'react-native';
 import {Content, Form, Item, Input, Label, Button} from 'native-base';
 import {connect} from 'react-redux';
 import axios from 'axios';
+
+
+let loader=false;
 
 
 // importing the backend configuring
@@ -21,6 +25,14 @@ import AccountFormAction from '../../redux/actions/auth/AccountFormAction';
 class LoginAccount extends Component {
 
 
+  componentDidMount(){
+    this.props.navigation.addListener('focus',()=>{
+      loader=false;
+      this.forceUpdate();
+    });
+  }
+
+
   saveData=(inputName,text)=>this.props.setAccountData(inputName,text)
 
 
@@ -32,6 +44,8 @@ class LoginAccount extends Component {
       onPress:()=>this.props.navigation.navigate('LoginAccountScreen')
     }]);
     else{
+    loader=true;
+    this.forceUpdate();
     axios({
         url:`${url}/api/auth/customer/login`,
         method:'POST',
@@ -43,37 +57,48 @@ class LoginAccount extends Component {
           text:'Create Account',
           onPress:()=>{
           this.props.setAccountData('RESET','');
+          loader=false;
+          this.forceUpdate();
           this.props.navigation.replace('CreateAccountScreen');
         }
         },
         {
           text:'Cancel',
-          onPress:()=>this.props.navigation.navigate('LoginAccountScreen')
+          onPress:()=>{
+          this.props.setAccountData('RESET','');
+          loader=false;
+          this.forceUpdate();
+          this.props.navigation.navigate('LoginAccountScreen');
+        }
         }]);
         else if(res.data.passwordIncorrect==='Password is incorrect')
         Alert.alert('Password is incorrect','',[{
           text:'Cancel',
-          onPress:()=>this.props.navigation.navigate('LoginAccountScreen')
+          onPress:()=>{
+          this.props.setAccountData('RESET','');
+          loader=false;
+          this.forceUpdate();
+          this.props.navigation.navigate('LoginAccountScreen');
+        }
         }]);
         else{
         AsyncStorage.setItem('token',res.data.token)
-        .then(()=>{
-        this.props.setAccountData('RESET','');
-        // this.props.navigation.popToTop();
-        })
+        .then(()=>this.props.setAccountData('RESET',''))
         .catch(err=>console.log(err));
-
         }
-
       })
       .catch(err=>console.log(err));
     }
-
-
   }
 
 
   render(){
+    if(loader)
+    return(
+      <View style={styles.container}>
+      <ActivityIndicator size='large' color='#7612cc'/>
+      </View>
+  );
     return(
       <Content>
       <View style={styles.logo}>
@@ -116,6 +141,11 @@ export default connect(mapStateToProps,mapDispatchToProps)(LoginAccount);
 
 // creating the stylings
 const styles=StyleSheet.create({
+container:{
+  flex:1,
+  justifyContent:'center',
+  alignItems:'center'
+},
 logo:{
   flexDirection:'row',
   justifyContent:'center',

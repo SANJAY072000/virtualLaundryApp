@@ -11,7 +11,7 @@ import HomeScreen from './screens/home/HomeScreen';
 import AccountScreen from './screens/auth/AccountScreen';
 import CreateAccountScreen from './screens/auth/CreateAccountScreen';
 import LoginAccountScreen from './screens/auth/LoginAccountScreen';
-import TestScreen from './screens/auth/TestScreen';
+import DashboardScreen from './screens/auth/DashboardScreen';
 
 let token='';
 // importing the store
@@ -63,8 +63,8 @@ export default class App extends Component {
       </>
         ):(
           <>
-      <Stack.Screen name='TestScreen' component={TestScreen} options={{
-          title:'Cleanly'
+      <Stack.Screen name='DashboardScreen' component={DashboardScreen} options={{
+          title:'Dashboard'
         }}/>
       </>
       )}

@@ -5,16 +5,16 @@ import {Container} from 'native-base';
 
 
 // importing the components
-import Test from '../../components/auth/Test';
+import Dashboard from '../../components/auth/Dashboard';
 
 
-export default class TestScreen extends Component {
+export default class DashboardScreen extends Component {
 
 
   render(){
     return(
       <Container>
-      <Test navigation={this.props.navigation}/>
+      <Dashboard navigation={this.props.navigation}/>
       </Container>
     );
   }
