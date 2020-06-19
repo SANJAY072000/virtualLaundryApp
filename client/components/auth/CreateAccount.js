@@ -46,13 +46,19 @@ class CreateAccount extends Component {
           if(res.data.customerAlreadyRegistered==='Customer is already registered')
           Alert.alert('You are already registered','',[{
             text:'Login',
-            onPress:()=>this.props.navigation.replace('LoginAccountScreen')
+            onPress:()=>{
+            this.props.setAccountData('RESET','');
+            this.props.navigation.replace('LoginAccountScreen');
+          }
           },
           {
             text:'Cancel',
             onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
           }]);
-          else this.props.navigation.navigate('LoginAccountScreen');
+          else{
+          this.props.setAccountData('RESET','');
+          this.props.navigation.replace('LoginAccountScreen');
+        }
         })
         .catch(err=>console.log(err));
       }

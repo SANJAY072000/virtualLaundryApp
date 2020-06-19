@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
+import {AsyncStorage} from 'react-native';
 
 
 // importing the screens
@@ -10,8 +11,9 @@ import HomeScreen from './screens/home/HomeScreen';
 import AccountScreen from './screens/auth/AccountScreen';
 import CreateAccountScreen from './screens/auth/CreateAccountScreen';
 import LoginAccountScreen from './screens/auth/LoginAccountScreen';
+import TestScreen from './screens/auth/TestScreen';
 
-
+let token='';
 // importing the store
 import Store from './redux/store/Store';
 
@@ -24,17 +26,24 @@ export default class App extends Component {
 
 
   render(){
+    AsyncStorage.getItem('token')
+    .then(v=>{
+      token=v;
+      this.forceUpdate();
+    })
+    .catch(err=>console.log(err));
     return(
       <Provider store={Store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
-            headerTintColor:'#fff',
-            headerStyle:{
-              backgroundColor:'#7612cc',
-            }
-          }}>
+          headerTintColor:'#fff',
+          headerStyle:{
+            backgroundColor:'#7612cc',
+          }
+        }}>
 
-
+        {token===null?(
+          <>
       <Stack.Screen name='HomeScreen' component={HomeScreen} options={{
           title:'Cleanly'
         }}/>
@@ -51,8 +60,15 @@ export default class App extends Component {
           title:'Login'
         }}/>
 
-
-        </Stack.Navigator>
+      </>
+        ):(
+          <>
+      <Stack.Screen name='TestScreen' component={TestScreen} options={{
+          title:'Cleanly'
+        }}/>
+      </>
+      )}
+</Stack.Navigator>
       </NavigationContainer>
       </Provider>
     );
