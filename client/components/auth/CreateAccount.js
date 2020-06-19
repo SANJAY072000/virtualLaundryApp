@@ -46,7 +46,11 @@ class CreateAccount extends Component {
           if(res.data.customerAlreadyRegistered==='Customer is already registered')
           Alert.alert('You are already registered','',[{
             text:'Login',
-            onPress:()=>this.props.navigation.navigate('LoginAccountScreen')
+            onPress:()=>this.props.navigation.replace('LoginAccountScreen')
+          },
+          {
+            text:'Cancel',
+            onPress:()=>this.props.navigation.navigate('CreateAccountScreen')
           }]);
           else this.props.navigation.navigate('LoginAccountScreen');
         })
@@ -102,11 +106,6 @@ mapDispatchToProps=dispatch=>({
 
 // exporting the component
 export default connect(mapStateToProps,mapDispatchToProps)(CreateAccount);
-
-
-
-
-
 
 
 // creating the stylings

@@ -24,6 +24,13 @@ const AccountFormReducer=(state=AccountFormState,action)=>{
       ...state,
       customerPassword:action.text
     };
+    case 'RESET':
+    return {
+      ...state,
+      customerName:'',
+      customerEmail:'',
+      customerPassword:''
+    };
     default: return {...state};
   }
 }
