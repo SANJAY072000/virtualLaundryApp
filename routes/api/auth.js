@@ -40,8 +40,8 @@ newCustomer.save()
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'sanjaysinghbisht751@gmail.com',
-            pass: 'Sak07sham@'
+            user: 'devcaffe4@gmail.com',
+            pass: '4developersatcaffe'
         }
         });
         var mailOptions = {};
