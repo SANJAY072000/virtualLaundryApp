@@ -5,7 +5,7 @@ import {Container} from 'native-base';
 
 
 // importing the components
-import Dashboard from '../../components/auth/Dashboard';
+import Dashboard from '../../components/dashboard/Dashboard';
 
 
 export default class DashboardScreen extends Component {

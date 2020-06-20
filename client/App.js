@@ -11,7 +11,7 @@ import HomeScreen from './screens/home/HomeScreen';
 import AccountScreen from './screens/auth/AccountScreen';
 import CreateAccountScreen from './screens/auth/CreateAccountScreen';
 import LoginAccountScreen from './screens/auth/LoginAccountScreen';
-import DashboardScreen from './screens/auth/DashboardScreen';
+import DashboardScreen from './screens/dashboard/DashboardScreen';
 
 let token='';
 // importing the store
