@@ -27,12 +27,13 @@ export default class Auth extends Component {
       }}>
       <Drawer.Screen name="DashboardStack"
         options={{drawerLabel:'Dashboard',
-        drawerIcon:()=><Image source={require('../../assets/images/dashboard/dashboard.png')} 
-        style={{width:25,height:25}}/>}} component={DashboardStack}/>
+        drawerIcon:()=><Image source={require('../../assets/images/dashboard/dashboard.png')}
+        style={{width:25,height:25,marginRight:-25}}/>}}
+        component={DashboardStack}/>
       <Drawer.Screen name="Logout"
         options={{drawerLabel:'Logout',
-        drawerIcon:()=><Image source={require('../../assets/images/dashboard/logout.png')} 
-        style={{width:25,height:25}}/>}} component={Logout}/>
+        drawerIcon:()=><Image source={require('../../assets/images/dashboard/logout.png')}
+        style={{width:25,height:25,marginRight:-25}}/>}} component={Logout}/>
     </Drawer.Navigator>
     );
   }
