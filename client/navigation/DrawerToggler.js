@@ -14,7 +14,7 @@ export default class DrawerToggler extends Component {
     <View style={{'flexDirection':'row'}}>
       <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
         <Image source={require('../assets/images/menu.png')}
-          style={{width:25,height:25,marginLeft:20}}/>
+          style={{width:25,height:25,marginLeft:20,marginTop:3}}/>
       </TouchableOpacity>
     </View>
   );

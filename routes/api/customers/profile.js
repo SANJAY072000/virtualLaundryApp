@@ -108,5 +108,3 @@ CustomerPlan.find({customerId:req.user._id})
 
 // exporting the routes
 module.exports=router;
-
-

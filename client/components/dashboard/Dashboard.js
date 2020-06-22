@@ -1,13 +1,13 @@
 // importing the required modules
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity,
-  AsyncStorage, ActivityIndicator, Image} from 'react-native';
+  AsyncStorage, ActivityIndicator, Image, Dimensions} from 'react-native';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Content} from 'native-base';
+import {Content, Button} from 'native-base';
 
 
-let loader;
+let loader=true;
 
 
 // importing the backend configuring
@@ -55,20 +55,32 @@ class Dashboard extends Component {
   render(){
     if(loader)
     return(
-    <View style={styles.container}>
+    <View style={styles.containerLoader}>
     <ActivityIndicator size='large' color='#7612cc'/>
     </View>
   );
     return(
       <Content>
       <View style={styles.container}>
-      <TouchableOpacity style={{overflow:'hidden'}}>
+      <TouchableOpacity
+        onPress={()=>this.props.navigation.navigate('UploadImageScreen')}>
       <Image source={{uri:this.props.userProfile.customerImage}}
          style={styles.image}/>
       </TouchableOpacity>
       <Text style={styles.name}>
       {this.props.userProfile.customerId.customerName}
       </Text>
+      </View>
+      <View style={{marginTop:70}}>
+      <Button rounded bordered style={[styles.button1,styles.alignh]}>
+      <Text style={styles.title1}>Place Order</Text>
+      </Button>
+      <View style={styles.alignh}>
+      <Text style={{fontWeight:'bold'}}>Or</Text>
+      </View>
+      <Button rounded bordered style={[styles.button2,styles.alignh]}>
+      <Text style={styles.title2}>Buy Plan</Text>
+      </Button>
       </View>
       </Content>
     );
@@ -97,16 +109,50 @@ const styles=StyleSheet.create({
   container:{
     flex:1,
     justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#F5BCBA'
+  },
+  containerLoader:{
+    flex:1,
+    justifyContent:'center',
     alignItems:'center'
   },
   image:{
-    width:200,
-    height:200,
+    width:250,
+    height:250,
     marginVertical:25
   },
   name:{
     fontWeight:'bold',
     fontSize:20,
-    color:'#EA7773'
+    textAlign:'center',
+    backgroundColor:'#EA7773',
+    color:'#fff',
+    paddingHorizontal:20,
+    paddingVertical:10,
+    width:Dimensions.get('window').width
+  },
+  alignh:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  button1:{
+    marginHorizontal:40,
+    marginVertical:25,
+    backgroundColor:'#6e6ceb'
+  },
+  title1:{
+    color:'#fff',
+    fontWeight:'bold'
+  },
+  title2:{
+    color:'#6e6ceb',
+    fontWeight:'bold'
+  },
+  button2:{
+    marginHorizontal:40,
+    marginVertical:20,
+    borderColor:'#6129ea'
   }
 });

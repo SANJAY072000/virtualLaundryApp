@@ -10,25 +10,25 @@ const Stack=createStackNavigator();
 
 // importing the screens
 import DashboardScreen from '../../screens/dashboard/DashboardScreen';
+import UploadImageScreen from '../../screens/dashboard/UploadImageScreen';
 
 
 export default class DashboardStack extends Component {
   render(){
     return(
       <Stack.Navigator screenOptions={{
-        headerLeft:()=><DrawerToggler navigation={this.props.navigation}/>,
         headerTintColor:'#fff',
         headerStyle:{
           backgroundColor:'#7612cc'
         }
         }}>
-        <Stack.Screen
-          name="DashboardScreen"
-          component={DashboardScreen}
+        <Stack.Screen name="DashboardScreen" component={DashboardScreen}
           options={{
-            title:'Dashboard'
-          }}
-        />
+          headerLeft:()=><DrawerToggler navigation={this.props.navigation}/>,
+          title:'Dashboard'
+        }}/>
+        <Stack.Screen name="UploadImageScreen" component={UploadImageScreen}
+          options={{title:'Upload Image'}}/>
       </Stack.Navigator>
     );
   }
