@@ -42,7 +42,8 @@ require('./strategies/jsonwtStrategy')(passport);
 
 
 // connecting the mongodb
-mongoose.connect(dbstr,{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect(dbstr,{useNewUrlParser:true,
+    useUnifiedTopology:true,useFindAndModify:false})
         .then(res=>console.log('Mongodb connected successfully'))
         .catch(err=>console.log(err));
 

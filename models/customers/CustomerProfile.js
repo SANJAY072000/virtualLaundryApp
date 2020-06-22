@@ -11,7 +11,7 @@ const customerProfileSchema=new Schema({
     },
     customerImage:{
         type:String,
-        required:true
+        default:'https://firebasestorage.googleapis.com/v0/b/virtuallaundry.appspot.com/o/customerImages%2Fpr.png?alt=media&token=e3ef908e-c469-4e8c-a26e-ce1d081138e4'
     },
     date:{
         type:Date,

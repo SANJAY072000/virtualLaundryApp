@@ -9,7 +9,8 @@ jsonwt=require('jsonwebtoken');
 
 
 // importing the required schema
-const Customer=require('../../models/customers/Customer');
+const Customer=require('../../models/customers/Customer'),
+CustomerProfile=require('../../models/customers/CustomerProfile');
 
 
 // importing the secret key
@@ -47,8 +48,8 @@ newCustomer.save()
         var mailOptions = {};
         mailOptions.from='sanjaysinghbisht751@gmail.com';
         mailOptions.to=customer.customerEmail;
-        mailOptions.subject='Thanks for registering to Cleanly';
-        mailOptions.text=`Welcome to Cleanly ! Your credentials are : email - ${customer.customerEmail}
+        mailOptions.subject='Thank You for registering to Cleanly';
+        mailOptions.text=`Welcome to Cleanly! Your credentials are : email - ${customer.customerEmail}
         and password - ${req.body.customerPassword}`;
         transporter.sendMail(mailOptions, (error, info)=>{
         if (error) {
@@ -57,7 +58,9 @@ newCustomer.save()
             console.log('Email sent: ' + info.response);
         }
         });
-    res.status(200).json(customer);
+    new CustomerProfile({customerId:customer._id}).save()
+    .then(customerProfile=>res.status(200).json(customer))
+    .catch(err=>console.log(err));
 })
 .catch(err=>console.log(err));
 });

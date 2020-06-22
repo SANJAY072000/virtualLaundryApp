@@ -30,15 +30,13 @@ return res.status(200).json(customerProfile);
 
 /*
 @type - POST
-@route - /api/customers/profile/createProfile
+@route - /api/customers/profile/updateProfile
 @description - A route to create the profile of customer
 @access - PRIVATE
 */
-router.post('/createProfile',passport.authenticate('jwt',{session:false}),(req,res)=>{
-const {customerImage}=req.body;
-const newCustomerProfile=new CustomerProfile({customerImage});
-newCustomerProfile.customerId=req.user._id;
-newCustomerProfile.save()
+router.post('/updateProfile',passport.authenticate('jwt',{session:false}),(req,res)=>{
+CustomerProfile.findOneAndUpdate({customerId:req.user._id},
+    {$set:req.body},{new:true})
 .then(customerProfile=>res.status(200).json(customerProfile))
 .catch(err=>console.log(err));
 });
