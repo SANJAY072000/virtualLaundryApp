@@ -1,6 +1,7 @@
 // configuring the initial state
 let ProfileInitialState={
-  userProfile:{}
+  userProfile:{},
+  cameraState:{}
 };
 
 
@@ -11,6 +12,11 @@ const SetProfileReducer=(state=ProfileInitialState,action)=>{
     return {
       ...state,
       userProfile:action.userProfile
+    };
+    case 'SET_CAMERA':
+    return {
+      ...state,
+      cameraState:action.userProfile
     };
     default: return {...state};
   }
