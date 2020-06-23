@@ -1,3 +1,7 @@
+// importing the required modules
+import firebase from 'firebase';
+
+
 // creating the firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCRQZOu7MrM_7FZeghl1GTQjP39Va1CFV8",
@@ -9,6 +13,8 @@ const firebaseConfig = {
     appId: "1:453539374890:web:0b82800b3dbf34f6386053",
     measurementId: "G-CKVSDEXNHZ"
   };
+firebase.initializeApp(firebaseConfig);
+
 
 // exporting the firebase configuration
-export default firebaseConfig;
+export default firebase;

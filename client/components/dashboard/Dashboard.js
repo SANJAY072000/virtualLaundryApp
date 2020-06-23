@@ -120,7 +120,8 @@ const styles=StyleSheet.create({
   image:{
     width:250,
     height:250,
-    marginVertical:25
+    marginVertical:25,
+    borderRadius:200
   },
   name:{
     fontWeight:'bold',
