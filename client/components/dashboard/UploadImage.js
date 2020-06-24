@@ -2,7 +2,8 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Text,
   Image, Alert, AsyncStorage,
-  ActivityIndicator, TouchableOpacity} from 'react-native';
+  ActivityIndicator, TouchableOpacity, YellowBox} from 'react-native';
+import _ from 'lodash';
 import {Content, Button} from 'native-base';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
@@ -21,9 +22,15 @@ import SetProfileAction from '../../redux/actions/dashboard/SetProfileAction';
 
 
 let loader=false,token,isCamera=false;
-console.ignoredYellowBox=[
-    'Setting a timer'
-]
+
+
+YellowBox.ignoreWarnings(['Setting a timer']);
+const _console=_.clone(console);
+console.warn=message=>{
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
 
 
 // importing the backend configuring
@@ -135,14 +142,14 @@ class UploadImage extends Component {
         .then(response=>{
           response.blob()
           .then(blob=>{
+            loader=true;
+            isCamera=false;
+            this.forceUpdate();
           let stref=firebase.storage().ref(`customerImages/${Date.now()}`);
           stref.put(blob)
           .then(snapshot=>{
           stref.getDownloadURL()
           .then(downloadUrl=>{
-            loader=true;
-            isCamera=false;
-            this.forceUpdate();
           axios({
             url:`${url}/api/customers/profile/updateProfile`,
             method:'POST',
@@ -196,17 +203,13 @@ class UploadImage extends Component {
       <View style={{flexDirection:'row',flex:1}}>
       <TouchableOpacity style={styles.button3}
       onPress={this.takePhoto.bind(this)}>
-      <View>
       <Entypo name='camera' color='#fff' size={20}/>
       <Text style={styles.title1}>Capture Photo</Text>
-      </View>
       </TouchableOpacity>
       <TouchableOpacity  style={styles.button4}
       onPress={this.flipCamera.bind(this)}>
-      <View>
       <Entypo name='popup' color='#fff' size={20}/>
       <Text style={styles.title1}>Flip Camera</Text>
-      </View>
       </TouchableOpacity>
       </View>
       </View>
