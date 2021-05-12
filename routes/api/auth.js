@@ -46,7 +46,7 @@ newCustomer.save()
         }
         });
         var mailOptions = {};
-        mailOptions.from='sanjaysinghbisht751@gmail.com';
+        mailOptions.from='';
         mailOptions.to=customer.customerEmail;
         mailOptions.subject='Thank You for registering to Cleanly';
         mailOptions.text=`Welcome to Cleanly! Your credentials are : email - ${customer.customerEmail}
